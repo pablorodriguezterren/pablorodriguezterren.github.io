@@ -7,43 +7,43 @@
     <!-- Diseño CSS en el mismo documento -->
     <style type="text/css">
         body { 
-            font-family: Arial, Helvetica, sans-serif; /* Familia de fuentes sugerida en los apuntes[cite: 111] */
+            font-family: Arial, Helvetica, sans-serif; 
             margin: 0; 
             padding: 0; 
             background-color: #f4f4f9; 
         }
         .contenido {
-            padding: 1em; /*[cite: 110] */
-            text-align: center; /*[cite: 110] */
+            padding: 1em; 
+            text-align: center; 
         }
         .card {
-            border: solid 1px black; /*[cite: 110] */
-            border-radius: 25px; /* Bordes curvados[cite: 110] */
-            box-shadow: 0 0 5px #888; /* Añade la sombra[cite: 110] */
-            padding: 20px; /*[cite: 110] */
-            margin: 20px; /*[cite: 110] */
+            border: solid 1px black; 
+            border-radius: 25px; 
+            box-shadow: 0 0 5px #888; 
+            padding: 20px; 
+            margin: 20px; 
             background-color: white;
         }
         button {
             padding: 0.5em 1em; 
-            margin: 5px; /* Margen exterior[cite: 110] */
-            border-radius: 10px; /* Botones redondeados[cite: 110] */
-            background-color: LightBlue; /* Colores entretenidos pero discretos[cite: 110] */
+            margin: 5px; 
+            border-radius: 10px; 
+            background-color: LightBlue; 
             color: #000000; 
             border: solid 1px #888; 
         }
         .big { 
-            color: darkblue; /*[cite: 110] */
+            color: darkblue; 
         }
     </style>
 
     <!-- Código JavaScript -->
     <script type="text/javascript">
-        // Variables globales para las operaciones binarias[cite: 99]
+        // Variables globales para las operaciones binarias
         let acc = 0;
         let op = "";
 
-        // Validación y gestión de errores[cite: 99, 100]
+        // Validación y gestión de errores
         const validate = () => {
             let n1 = document.getElementById("n1").value;
             if (n1 === "") {
@@ -53,27 +53,28 @@
             return true;
         };
 
-        // Función para actualizar el campo de información[cite: 98, 99]
+        // Función para actualizar el campo de información con saltos de línea
         const fill_info = (operacion, val) => {
             let info = document.getElementById("info");
-            let mensaje_base = "Operación: " + operacion + ". El resultado es " + val + ". "; // Mensajes personalizados[cite: 99]
+            // Se utiliza <br> para separar las frases en líneas distintas
+            let mensaje_base = "Operación: " + operacion + ".<br>El resultado es " + val + ".<br>"; 
             
             if (val < 100) {
-                info.innerHTML = mensaje_base + "Info: El resultado es menor que 100"; //[cite: 98]
+                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado es menor que 100"; 
             } else if (val >= 100 && val <= 200) {
-                info.innerHTML = mensaje_base + "Info: El resultado está entre 100 y 200"; //[cite: 98]
+                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado está entre 100 y 200"; 
             } else {
-                info.innerHTML = mensaje_base + "Info: El resultado es mayor que 200"; //[cite: 98]
+                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado es mayor que 200"; 
             }
         };
 
-        // --- OPERACIONES UNARIAS (Funciones flecha)[cite: 68, 98] ---
+        // --- OPERACIONES UNARIAS (Funciones flecha) ---
         const square = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
                 let res = Number(num.value) * Number(num.value);
                 num.value = res;
-                fill_info("Cuadrado", res); //[cite: 98]
+                fill_info("Cuadrado", res); 
             }
         };
 
@@ -82,7 +83,7 @@
                 let num = document.getElementById("n1");
                 let x = Number(num.value);
                 let res = x;
-                if (x < 0) { res = -x; } // Valor absoluto[cite: 98]
+                if (x < 0) { res = -x; } 
                 num.value = res;
                 fill_info("Módulo", res);
             }
@@ -93,15 +94,15 @@
                 let num = document.getElementById("n1");
                 let x = Number(num.value);
                 if (x < 0) {
-                    alert("Error: No se puede calcular el factorial de un número negativo."); // Gestión de errores específica[cite: 99]
+                    alert("Error: No se puede calcular el factorial de un número negativo."); 
                     return;
                 }
                 let res = 1;
-                for (let i = x; i > 0; i--) { // Bucle for[cite: 86]
+                for (let i = x; i > 0; i--) { 
                     res = res * i;
                 }
                 num.value = res;
-                fill_info("Factorial", res); //[cite: 99]
+                fill_info("Factorial", res); 
             }
         };
 
@@ -110,16 +111,16 @@
                 let num = document.getElementById("n1");
                 let x = Number(num.value);
                 if (x < 0) {
-                    alert("Error: Se ha intentado hacer una raíz cuadrada de un número negativo."); // Mensaje específico[cite: 99, 100]
+                    alert("Error: Se ha intentado hacer una raíz cuadrada de un número negativo."); 
                     return;
                 }
-                let res = Math.sqrt(x); // Módulo Math[cite: 10]
+                let res = Math.sqrt(x); 
                 num.value = res;
-                fill_info("Raíz Cuadrada (Positivo)", res); //[cite: 100]
+                fill_info("Raíz Cuadrada (Positivo)", res); 
             }
         };
 
-        // --- OPERACIONES BINARIAS[cite: 99] ---
+        // --- OPERACIONES BINARIAS ---
         const setAddition = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
@@ -140,12 +141,12 @@
 
         const potencia = () => {
             let n1 = document.getElementById("n1").value;
-            let n2 = document.getElementById("n2").value; // Segundo campo para potencia[cite: 100]
+            let n2 = document.getElementById("n2").value; 
             if (n1 === "" || n2 === "") {
-                alert("Error: Faltan datos para realizar la potencia. Usa ambos campos."); //[cite: 100]
+                alert("Error: Faltan datos para realizar la potencia. Usa ambos campos."); 
                 return;
             }
-            let res = Math.pow(Number(n1), Number(n2)); // Módulo Math.pow[cite: 10]
+            let res = Math.pow(Number(n1), Number(n2)); 
             document.getElementById("n1").value = res;
             fill_info("Potenciación", res);
         };
@@ -166,13 +167,13 @@
             }
         };
 
-        // --- OPERACIONES CON CSV[cite: 99, 100] ---
+        // --- OPERACIONES CON CSV ---
         const sumCSV = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
-                let arr = num.value.split(","); // Separar string[cite: 89]
+                let arr = num.value.split(","); 
                 let total = 0;
-                for (let i = 0; i < arr.length; i++) { //[cite: 86]
+                for (let i = 0; i < arr.length; i++) { 
                     total = total + Number(arr[i]);
                 }
                 num.value = total;
@@ -185,14 +186,14 @@
                 let num = document.getElementById("n1");
                 let arr = num.value.split(",");
                 if(arr.length === 0 || num.value === "") {
-                    alert("Error: Lista CSV vacía o incorrecta."); // Validación de CSV vacío[cite: 100]
+                    alert("Error: Lista CSV vacía o incorrecta."); 
                     return;
                 }
                 let total = 0;
                 for (let i = 0; i < arr.length; i++) {
                     total = total + Number(arr[i]);
                 }
-                let media = total / arr.length; // Cálculo de media[cite: 100]
+                let media = total / arr.length; 
                 num.value = media;
                 fill_info("Media CSV", media);
             }
@@ -202,8 +203,8 @@
             if (validate()) {
                 let num = document.getElementById("n1");
                 let arr = num.value.split(",");
-                arr.sort(); //[cite: 90]
-                num.value = arr.join(","); //[cite: 90]
+                arr.sort(); 
+                num.value = arr.join(","); 
                 fill_info("Ordenar CSV", arr.length);
             }
         };
@@ -212,7 +213,7 @@
             if (validate()) {
                 let num = document.getElementById("n1");
                 let arr = num.value.split(",");
-                arr.reverse(); //[cite: 90]
+                arr.reverse(); 
                 num.value = arr.join(",");
                 fill_info("Invertir CSV", arr.length);
             }
@@ -222,13 +223,13 @@
             if (validate()) {
                 let num = document.getElementById("n1");
                 let arr = num.value.split(",");
-                arr.pop(); // Elimina el último elemento[cite: 91]
+                arr.pop(); 
                 num.value = arr.join(",");
                 fill_info("Eliminar último CSV", arr.length);
             }
         };
 
-        // Asociación de eventos al cargar el DOM[cite: 17, 78]
+        // Asociación de eventos al cargar el DOM
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('square').addEventListener('click', square);
             document.getElementById('modulo').addEventListener('click', mod);
@@ -258,21 +259,21 @@
             Número principal o lista CSV: <input type="text" id="n1"> <br><br>
             Segundo número (Solo para potencia): <input type="text" id="n2"> <br><br>
 
-            <!-- Operaciones Unarias[cite: 98, 99] -->
+            <!-- Operaciones Unarias -->
             <button id="square">x<sup>2</sup></button>
             <button id="modulo">Módulo</button>
             <button id="factorial">Factorial</button>
             <button id="raiz">Raíz Cuadrada</button>
             <br><br>
 
-            <!-- Operaciones Binarias[cite: 99] -->
+            <!-- Operaciones Binarias -->
             <button id="addition">+</button>
             <button id="multiplication">*</button>
             <button id="btn_potencia">Potencia (x^y)</button>
             <button id="eq">=</button>
             <br><br>
 
-            <!-- Operaciones CSV[cite: 99, 100] -->
+            <!-- Operaciones CSV -->
             <button id="csv_sum">sum()</button>
             <button id="csv_media">media()</button>
             <button id="csv_sort">sort()</button>
@@ -280,7 +281,7 @@
             <button id="csv_removelast">removelast()</button>
         </div>
 
-        <!-- Tarjeta para el Campo de Información[cite: 98] -->
+        <!-- Tarjeta para el Campo de Información -->
         <div class="card">
             <h2 id="info" class="big" title="Información sobre el número">Información sobre el número</h2>
         </div>

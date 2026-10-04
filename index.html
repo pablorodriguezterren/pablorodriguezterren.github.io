@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Calculadora Web</title>
     
-    <!-- CSS -->
+    <!-- Diseño CSS en el mismo documento -->
     <style type="text/css">
         body { 
             font-family: Arial, Helvetica, sans-serif; 
@@ -53,7 +53,7 @@
             return true;
         };
 
-        // Función para actualizar la información
+        // Función para actualizar el campo de información con saltos de línea
         const fill_info = (operacion, val) => {
             let info = document.getElementById("info");
             let mensaje_base = "Operación: " + operacion + ".<br>El resultado es " + val + ".<br>"; 
@@ -67,13 +67,22 @@
             }
         };
 
-        // OPERACIONES UNARIAS
+        // --- OPERACIONES UNARIAS (Funciones flecha) ---
         const square = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
                 let res = Number(num.value) * Number(num.value);
                 num.value = res;
                 fill_info("Cuadrado", res); 
+            }
+        };
+
+        const cubo = () => {
+            if (validate()) {
+                let num = document.getElementById("n1");
+                let res = Number(num.value) * Number(num.value) * Number(num.value);
+                num.value = res;
+                fill_info("Cubo", res); 
             }
         };
 
@@ -119,7 +128,7 @@
             }
         };
 
-        // OPERACIONES BINARIAS
+        // --- OPERACIONES BINARIAS ---
         const setAddition = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
@@ -166,9 +175,7 @@
             }
         };
 
-        // OPERACIONES CON CSV
-        
-        // Suma y Media
+        // --- OPERACIONES CON CSV ---
         const sumCSV = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
@@ -200,7 +207,7 @@
             }
         };
 
-        // Devuelven el texto de la serie
+        // Modificadas exclusivamente para devolver el texto de la serie
         const sortCSV = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
@@ -237,6 +244,7 @@
         // Asociación de eventos al cargar el DOM
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('square').addEventListener('click', square);
+            document.getElementById('cubo').addEventListener('click', cubo);
             document.getElementById('modulo').addEventListener('click', mod);
             document.getElementById('factorial').addEventListener('click', fact);
             document.getElementById('raiz').addEventListener('click', raiz);
@@ -266,6 +274,7 @@
 
             <!-- Operaciones Unarias -->
             <button id="square">x<sup>2</sup></button>
+            <button id="cubo">x<sup>3</sup></button>
             <button id="modulo">Módulo</button>
             <button id="factorial">Factorial</button>
             <button id="raiz">Raíz Cuadrada</button>

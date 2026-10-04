@@ -53,18 +53,17 @@
             return true;
         };
 
-        // Función para actualizar el campo de información con saltos de línea
+        // Función para actualizar el campo de información con saltos de línea (Para operaciones con números)
         const fill_info = (operacion, val) => {
             let info = document.getElementById("info");
-            // Se utiliza <br> para separar las frases en líneas distintas
             let mensaje_base = "Operación: " + operacion + ".<br>El resultado es " + val + ".<br>"; 
             
             if (val < 100) {
-                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado es menor que 100"; 
+                info.innerHTML = mensaje_base + "Info: El resultado es menor que 100"; 
             } else if (val >= 100 && val <= 200) {
-                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado está entre 100 y 200"; 
+                info.innerHTML = mensaje_base + "Info: El resultado está entre 100 y 200"; 
             } else {
-                info.innerHTML = mensaje_base + "Información acerca del resultado: El resultado es mayor que 200"; 
+                info.innerHTML = mensaje_base + "Info: El resultado es mayor que 200"; 
             }
         };
 
@@ -116,7 +115,7 @@
                 }
                 let res = Math.sqrt(x); 
                 num.value = res;
-                fill_info("Raíz Cuadrada (Positivo)", res); 
+                fill_info("Raíz Cuadrada", res); 
             }
         };
 
@@ -168,6 +167,8 @@
         };
 
         // --- OPERACIONES CON CSV ---
+        
+        // Suma y Media devuelven números, por lo que siguen usando fill_info()
         const sumCSV = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
@@ -199,13 +200,15 @@
             }
         };
 
+        // Modificadas exclusivamente para devolver el texto de la serie[cite: 99]
         const sortCSV = () => {
             if (validate()) {
                 let num = document.getElementById("n1");
                 let arr = num.value.split(",");
                 arr.sort(); 
                 num.value = arr.join(","); 
-                fill_info("Ordenar CSV", arr.length);
+                let info = document.getElementById("info");
+                info.innerHTML = "Lista de valores procesada: se han ordenado los valores.<br>La serie resultante es: " + num.value;
             }
         };
 
@@ -215,7 +218,8 @@
                 let arr = num.value.split(",");
                 arr.reverse(); 
                 num.value = arr.join(",");
-                fill_info("Invertir CSV", arr.length);
+                let info = document.getElementById("info");
+                info.innerHTML = "Lista de valores procesada: se ha invertido el orden.<br>La serie resultante es: " + num.value;
             }
         };
 
@@ -225,7 +229,8 @@
                 let arr = num.value.split(",");
                 arr.pop(); 
                 num.value = arr.join(",");
-                fill_info("Eliminar último CSV", arr.length);
+                let info = document.getElementById("info");
+                info.innerHTML = "Lista de valores procesada: se ha eliminado el último valor.<br>La serie resultante es: " + num.value;
             }
         };
 
